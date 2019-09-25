@@ -1,17 +1,14 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-android {
-    compileSdkVersion 29
-    buildToolsVersion "29.0.2"
+apply plugin: 'kotlin-kapt'
 
+android {
+    compileSdkVersion rootProject.ext.compile_sdk
 
     defaultConfig {
         minSdkVersion 19
         targetSdkVersion 29
-        versionCode 1
-        versionName "1.0"
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles 'consumer-rules.pro'
     }
@@ -23,14 +20,83 @@ android {
         }
     }
 
+    flavorDimensions "default"
+    productFlavors {
+
+        develop {}
+
+        staging {}
+
+        production {}
+    }
+
+    libraryVariants.all { variant ->
+        def BASE_URL, DATABASE_VERSION, DATABASE_NAME, API_KEY_V3, API_KEY_V4
+
+        if (variant.getName().contains("develop")) {
+            BASE_URL = "https://api.themoviedb.org/3/"
+            API_KEY_V3 = "faf261888325f3e5598b206da781bfdc"
+            API_KEY_V4 = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmYWYyNjE4ODgzMjVmM2U1NTk4YjIwNmRhNzgxYmZkYyIsInN1YiI6IjVkOGFkNTQ2YWJmOGUyMDAyMTc3MzI5MCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Yf_3Y9uySv7Gxos8QhG0dE-n029rY6yHk4yruWGfCJs"
+        } else if (variant.getName().contains("staging")) {
+            BASE_URL = "https://api.themoviedb.org/3/"
+            API_KEY_V3 = "faf261888325f3e5598b206da781bfdc"
+            API_KEY_V4 = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmYWYyNjE4ODgzMjVmM2U1NTk4YjIwNmRhNzgxYmZkYyIsInN1YiI6IjVkOGFkNTQ2YWJmOGUyMDAyMTc3MzI5MCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Yf_3Y9uySv7Gxos8QhG0dE-n029rY6yHk4yruWGfCJs"
+        } else {
+            BASE_URL = "https://api.themoviedb.org/3/"
+            API_KEY_V3 = "faf261888325f3e5598b206da781bfdc"
+            API_KEY_V4 = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmYWYyNjE4ODgzMjVmM2U1NTk4YjIwNmRhNzgxYmZkYyIsInN1YiI6IjVkOGFkNTQ2YWJmOGUyMDAyMTc3MzI5MCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Yf_3Y9uySv7Gxos8QhG0dE-n029rY6yHk4yruWGfCJs"
+        }
+        DATABASE_VERSION = 0
+        DATABASE_NAME = "CleanArch"
+
+        variant.buildConfigField "String", "BASE_URL", "\"${BASE_URL}\""
+        variant.buildConfigField "int", "DATABASE_VERSION", "${DATABASE_VERSION}"
+        variant.buildConfigField "String", "DATABASE_NAME", "\"${DATABASE_NAME}\""
+        variant.buildConfigField "String", "API_KEY_V3", "\"${API_KEY_V3}\""
+        variant.buildConfigField "String", "API_KEY_V4", "\"${API_KEY_V4}\""
+    }
+
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(path: ':domain')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'androidx.core:core-ktx:1.1.0'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test:runner:1.2.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    // Dagger
+    implementation "com.google.dagger:dagger:$dagger_version"
+    implementation "com.google.dagger:dagger-android:$dagger_version"
+    implementation "com.google.dagger:dagger-android-support:$dagger_version"
+    kapt "com.google.dagger:dagger-compiler:$dagger_version"
+    kapt "com.google.dagger:dagger-android-processor:$dagger_version"
+
+    // Rx
+    implementation "io.reactivex.rxjava2:rxjava:$rxjava_version"
+
+    // Retrofit
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-moshi:$retrofit_version"
+    implementation "com.jakewharton.retrofit:retrofit2-rxjava2-adapter:$retrofit2_rxjava2_adapter_version"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
+    implementation "com.squareup.retrofit2:converter-scalars:$retrofit_version"
+    implementation "com.squareup.okhttp3:mockwebserver:$okhttp_version"
+
+    // Room
+    implementation "androidx.room:room-runtime:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+    implementation "androidx.room:room-rxjava2:$room_version"
+    testImplementation "androidx.room:room-testing:$room_version"
+
+    // Test
+    testImplementation "junit:junit:$junit_version"
+    testImplementation "org.mockito:mockito-core:$mockito_version"
+    testImplementation "org.mockito:mockito-inline:$mockito_version"
+    testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockito_kotlin_version"
+    androidTestImplementation("androidx.test:runner:$runner_version") {
+        exclude group: 'com.google.auto.value', module: 'auto-value-annotations'
+    }
+    androidTestImplementation("androidx.test.espresso:espresso-core:$espresso_version") {
+        exclude group: 'com.google.auto.value', module: 'auto-value-annotations'
+    }
 }
