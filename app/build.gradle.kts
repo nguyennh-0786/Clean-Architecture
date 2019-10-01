@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.dsl.KotlinJvmOptions
+
 plugins {
     id(Plugins.application)
     id(Plugins.kotlinAndroid)
@@ -16,6 +18,7 @@ android {
         versionName = Android.versionName
         testInstrumentationRunner = AndroidJUnit.runner
     }
+
     buildTypes {
         getByName(BuildType.release) {
             isMinifyEnabled = BuildType.minifyRelease
@@ -28,15 +31,29 @@ android {
             isTestCoverageEnabled = true
         }
     }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        val options = this as KotlinJvmOptions
+        options.jvmTarget = "1.8"
+    }
+
+    androidExtensions {
+        isExperimental = true
+    }
 }
 
 dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
-    implementation(Implementation.kotlinStdlibJdk8)
-    implementation(Implementation.appcompat)
-    implementation(Implementation.coreKtx)
-    implementation(Implementation.constraintlayout)
-    testImplementation(TestImplementation.jUnit)
-    androidTestImplementation(TestImplementation.runner)
-    androidTestImplementation(TestImplementation.espressoCore)
+    implementation(Dependencies.kotlinStdlibJdk8)
+    implementation(Dependencies.appcompat)
+    implementation(Dependencies.coreKtx)
+    implementation(Dependencies.constraintlayout)
+    testImplementation(Dependencies.jUnit)
+    androidTestImplementation(Dependencies.runner)
+    androidTestImplementation(Dependencies.espressoCore)
 }
