@@ -52,10 +52,12 @@ object Versions {
 }
 
 object Projects {
+    const val app = ":app"
+    const val data = ":data"
     const val domain = ":domain"
 }
 
-object Implementation {
+object Dependencies {
     const val legacySupportV4 = "androidx.legacy:legacy-support-v4:$legacy_support_version"
     const val kotlinGradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     const val gradle = "com.android.tools.build:gradle:$gradle_version"
@@ -82,9 +84,7 @@ object Implementation {
     const val appcompat = "androidx.appcompat:appcompat:$appcompatVersion"
     const val coreKtx = "androidx.core:core-ktx:$coreKtxVersion"
     const val constraintlayout = "androidx.constraintlayout:constraintlayout:$constraintlayoutVersion"
-}
 
-object TestImplementation {
     const val jUnit = "junit:junit:$junit_version"
     const val mockitoCore = "org.mockito:mockito-core:$mockito_version"
     const val mockitoKotlin =

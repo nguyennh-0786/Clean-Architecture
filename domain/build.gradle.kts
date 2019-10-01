@@ -7,15 +7,15 @@ plugins {
 dependencies {
 
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
-    implementation(Implementation.kotlinStdlibJdk8)
+    implementation(Dependencies.kotlinStdlibJdk8)
     // Rx
-    implementation(Implementation.rxJava)
+    implementation(Dependencies.rxJava)
 
     // Dagger
-    implementation(Implementation.javaxInject)
+    implementation(Dependencies.javaxInject)
 
     // Test
-    testImplementation(TestImplementation.jUnit)
-    testImplementation(TestImplementation.mockitoCore)
-    testImplementation(TestImplementation.mockitoKotlin)
+    testImplementation(Dependencies.jUnit)
+    testImplementation(Dependencies.mockitoCore)
+    testImplementation(Dependencies.mockitoKotlin)
 }

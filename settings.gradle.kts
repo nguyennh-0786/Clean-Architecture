@@ -1,2 +1,2 @@
-include (":app", ":data", ":domain")
-rootProject.name="CleanArch"
+include(Projects.app, Projects.data, Projects.domain)
+rootProject.name = "CleanArchDemo"
