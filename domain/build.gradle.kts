@@ -1,7 +1,6 @@
 plugins {
-    id(Plugins.javaLibrary)
-    id(Plugins.kotlin)
-    id(Plugins.kotlinKapt)
+    id(GradlePlugins.javaLib)
+    id(GradlePlugins.kotlin)
 }
 
 dependencies {

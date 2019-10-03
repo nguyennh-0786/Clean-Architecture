@@ -1,2 +1,2 @@
-include(Projects.app, Projects.data, Projects.domain)
-rootProject.name = "CleanArchDemo"
+include(Modules.app, Modules.data, Modules.domain)
+rootProject.name = Commons.appName

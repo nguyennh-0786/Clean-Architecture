@@ -1,116 +1,140 @@
-import Versions.appcompatVersion
-import Versions.constraintlayoutVersion
-import Versions.coreKtxVersion
-import Versions.dagger_version
-import Versions.espresso_version
-import Versions.gradle_version
-import Versions.junit_version
-import Versions.kotlin_version
-import Versions.legacy_support_version
-import Versions.mockito_kotlin_version
-import Versions.mockito_version
-import Versions.okhttp_version
-import Versions.retrofit2_rxjava2_adapter_version
-import Versions.retrofit_version
-import Versions.room_version
-import Versions.runner_version
-import Versions.rxjava_version
-
 object Versions {
-    const val compile_sdk = 29
-    const val buildToolsVersion = "29.0.2"
-    internal const val gradle_version = "3.5.0"
-
-    internal const val kotlin_version = "1.3.50"
-    internal const val legacy_support_version = "1.0.0"
-    internal const val dagger_version = "2.16"
-    internal const val okhttp_version = "3.11.0"
-
-    internal const val appcompatVersion = "1.1.0"
-    internal const val coreKtxVersion = "1.1.0"
-    internal const val constraintlayoutVersion = "1.1.3"
+    const val jvmTarget = "1.8"
+    const val buildTools = "29.0.2"
+    internal const val gradle = "3.5.0"
+    internal const val navigationSafe = "2.1.0-alpha05"
+    internal const val googleService = "4.3.0"
+    internal const val fabric = "1.31.0"
+    internal const val material = "1.1.0-alpha02"
+    internal const val lifecycle = "2.0.0"
+    internal const val junitExt = "1.1.0"
+    internal const val testRules = "1.1.1"
+    internal const val kotlin = "1.3.50"
+    internal const val legacySupport = "1.0.0"
+    internal const val dagger = "2.16"
+    internal const val appcompat = "1.1.0"
+    internal const val coreKtx = "1.1.0"
+    internal const val constraintLayout = "1.1.3"
 
     // Retrofit
-    internal const val retrofit_version = "2.4.0"
-    internal const val retrofit2_rxjava2_adapter_version = "1.0.0"
+    internal const val retrofit = "2.4.0"
+    internal const val retrofit2RxJava2Adapter = "1.0.0"
+    internal const val okHttp = "3.11.0"
 
     // Rx version
-    internal const val rxjava_version = "2.2.3"
-    internal const val rxandroid_version = "2.1.0"
+    internal const val rxJava = "2.2.3"
+    internal const val rxAndroid = "2.1.0"
 
     // Room version
-    internal const val room_version = "2.0.0"
+    internal const val room = "2.0.0"
 
     //Unit Testing
-    internal const val junit_version = "4.12"
-    internal const val mockito_version = "2.18.3"
-    internal const val mockito_kotlin_version = "2.0.0"
+    internal const val junit = "4.12"
+    internal const val mockito = "2.18.3"
+    internal const val mockitoKotlin = "2.0.0"
 
     //Acceptance Testing
-    internal const val runner_version = "1.1.1-alpha01"
-    internal const val espresso_version = "3.1.1-alpha01"
+    internal const val runner = "1.1.1-alpha01"
+    internal const val espresso = "3.1.1-alpha01"
 }
 
-object Projects {
+object Modules {
     const val app = ":app"
     const val data = ":data"
     const val domain = ":domain"
 }
 
 object Dependencies {
-    const val legacySupportV4 = "androidx.legacy:legacy-support-v4:$legacy_support_version"
-    const val kotlinGradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-    const val gradle = "com.android.tools.build:gradle:$gradle_version"
+
     const val kotlinStdlibJdk8 =
-        "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
-    const val rxJava = "io.reactivex.rxjava2:rxjava:$rxjava_version"
+        "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${Versions.kotlin}"
     const val javaxInject = "javax.inject:javax.inject:1@jar"
-    const val dagger = "com.google.dagger:dagger:$dagger_version"
-    const val daggerAndroid = "com.google.dagger:dagger-android:$dagger_version"
-    const val daggerAndroidSupport = "com.google.dagger:dagger-android-support:$dagger_version"
-    const val daggerCompiler = "com.google.dagger:dagger-compiler:$dagger_version"
-    const val daggerAndroidProcessor = "com.google.dagger:dagger-android-processor:$dagger_version"
-    const val retrofit = "com.squareup.retrofit2:retrofit:$retrofit_version"
+    const val testRules = "androidx.test:rules:${Versions.testRules}"
+    const val runner = "androidx.test:runner:${Versions.runner}"
 
-    const val converterGson = "com.squareup.retrofit2:converter-gson:$retrofit_version"
-    const val converterMoshi = "com.squareup.retrofit2:converter-moshi:$retrofit_version"
-    const val retrofit2Rxjava2Adapter = "com.jakewharton.retrofit:retrofit2-rxjava2-adapter:$retrofit2_rxjava2_adapter_version"
-    const val loggingInterceptor = "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
-    const val converterScalars = "com.squareup.retrofit2:converter-scalars:$retrofit_version"
-    const val mockWebserver = "com.squareup.okhttp3:mockwebserver:$okhttp_version"
-    const val roomRuntime = "androidx.room:room-runtime:$room_version"
-    const val roomCompiler = "androidx.room:room-compiler:$room_version"
-    const val roomRxjava2 = "androidx.room:room-rxjava2:$room_version"
-    const val appcompat = "androidx.appcompat:appcompat:$appcompatVersion"
-    const val coreKtx = "androidx.core:core-ktx:$coreKtxVersion"
-    const val constraintlayout = "androidx.constraintlayout:constraintlayout:$constraintlayoutVersion"
+    // Rx
+    const val rxAndroid = "io.reactivex.rxjava2:rxandroid:${Versions.rxAndroid}"
+    const val rxJava = "io.reactivex.rxjava2:rxjava:${Versions.rxJava}"
 
-    const val jUnit = "junit:junit:$junit_version"
-    const val mockitoCore = "org.mockito:mockito-core:$mockito_version"
+    // Dagger
+    const val dagger = "com.google.dagger:dagger:${Versions.dagger}"
+    const val daggerAndroid = "com.google.dagger:dagger-android:${Versions.dagger}"
+    const val daggerAndroidSupport = "com.google.dagger:dagger-android-support:${Versions.dagger}"
+    const val daggerCompiler = "com.google.dagger:dagger-compiler:${Versions.dagger}"
+    const val daggerAndroidProcessor =
+        "com.google.dagger:dagger-android-processor:${Versions.dagger}"
+
+    // Retrofit
+    const val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
+    const val converterGson = "com.squareup.retrofit2:converter-gson:${Versions.retrofit}"
+    const val converterMoshi = "com.squareup.retrofit2:converter-moshi:${Versions.retrofit}"
+    const val retrofit2Rxjava2Adapter =
+        "com.jakewharton.retrofit:retrofit2-rxjava2-adapter:${Versions.retrofit2RxJava2Adapter}"
+    const val loggingInterceptor = "com.squareup.okhttp3:logging-interceptor:${Versions.okHttp}"
+    const val converterScalars = "com.squareup.retrofit2:converter-scalars:${Versions.retrofit}"
+    const val mockWebserver = "com.squareup.okhttp3:mockwebserver:${Versions.okHttp}"
+
+    // Room DB
+    const val roomRuntime = "androidx.room:room-runtime:${Versions.room}"
+    const val roomCompiler = "androidx.room:room-compiler:${Versions.room}"
+    const val roomRxjava2 = "androidx.room:room-rxjava2:${Versions.room}"
+    const val roomTesting = "androidx.room:room-testing:${Versions.room}"
+
+    // Android library
+    const val appcompat = "androidx.appcompat:appcompat:${Versions.appcompat}"
+    const val coreKtx = "androidx.core:core-ktx:${Versions.coreKtx}"
+    const val constraintlayout =
+        "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}"
+    const val lifecycleExtensions = "androidx.lifecycle:lifecycle-extensions:${Versions.lifecycle}"
+    const val lifecycleCompiler = "androidx.lifecycle:lifecycle-compiler:${Versions.lifecycle}"
+    const val lifecycleReactivestreamsKtx =
+        "androidx.lifecycle:lifecycle-reactivestreams-ktx:${Versions.lifecycle}"
+    const val coreTesting = "androidx.arch.core:core-testing:${Versions.lifecycle}"
+    const val material = "com.google.android.material:material:${Versions.material}"
+    const val legacySupportV4 = "androidx.legacy:legacy-support-v4:${Versions.legacySupport}"
+
+    // Junit
+    const val jUnit = "junit:junit:${Versions.junit}"
+    const val junitExt = "androidx.test.ext:junit:${Versions.junitExt}"
+    const val truthExt = "androidx.test.ext:truth:${Versions.junitExt}"
+
+    // Mockito
+    const val mockitoCore = "org.mockito:mockito-core:${Versions.mockito}"
     const val mockitoKotlin =
-        "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockito_kotlin_version"
-    const val roomTesting = "androidx.room:room-testing:$room_version"
-    const val mockitoInline = "org.mockito:mockito-core:$mockito_version"
-    const val runner = "androidx.test:runner:$runner_version"
-    const val espressoCore = "androidx.test.espresso:espresso-core:$espresso_version"
+        "com.nhaarman.mockitokotlin2:mockito-kotlin:${Versions.mockitoKotlin}"
+    const val mockitoInline = "org.mockito:mockito-core:${Versions.mockito}"
+
+    // Espresso
+    const val espressoCore = "androidx.test.espresso:espresso-core:${Versions.espresso}"
+    const val espressoContrib = "androidx.test.espresso:espresso-contrib:${Versions.espresso}"
+    const val espressoIntents = "androidx.test.espresso:espresso-intents:${Versions.espresso}"
 }
 
-object Plugins {
-    const val javaLibrary = "java-library"
-    const val kotlinKapt = "kotlin-kapt"
+object GradlePlugins {
+    const val android = "com.android.application"
     const val kotlin = "kotlin"
-    const val androidLibrary = "com.android.library"
-    const val kotlinAndroid = "kotlin-android"
-    const val kotlinAndroidExtensions = "kotlin-android-extensions"
-    const val application = "com.android.application"
+    const val kotlinAndroid = "android"
+    const val kotlinExt = "android.extensions"
+    const val kotlinApt = "kapt"
+    const val javaLib = "java-library"
+    const val androidLib = "com.android.library"
+    const val navigationSafe = "androidx.navigation.safeargs"
+    const val navigationSafeKotlin = "androidx.navigation.safeargs.kotlin"
+    const val fabric = "io.fabric"
+    const val playService = "com.google.gms.google-services"
 }
 
 object Android {
+    // Manifest version
+    private const val versionMajor = 1
+    private const val versionMinor = 0
+    private const val versionPatch = 0
+
     const val minSdkVersion = 19
     const val targetSdkVersion = 29
-    const val applicationId = "com.louis.cleanarch"
-    const val versionCode = 1
-    const val versionName = "1.0.1"
+    const val applicationId = "com.louis.cleanarchdemo"
+    const val versionCode = versionMajor * 10000 + versionMinor * 100 + versionPatch
+    const val versionName = "$versionMajor.$versionMinor.$versionPatch"
 }
 
 object AndroidJUnit {
@@ -126,4 +150,35 @@ object BuildType {
 
     const val minifyDebug = false
     const val proguardDebug = "proguard-rules.pro"
+}
+
+object BuildPlugins {
+    const val gradle = "com.android.tools.build:gradle:${Versions.gradle}"
+    const val kotlinGradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
+    const val navigationSafe =
+        "androidx.navigation:navigation-safe-args-gradle-plugin:${Versions.navigationSafe}"
+    const val googleService = "com.google.gms:google-services:${Versions.googleService}"
+    const val fabric = "io.fabric.tools:gradle:${Versions.fabric}"
+}
+
+object Flavors {
+    const val develop = "develop"
+    const val staging = "staging"
+    const val production = "production"
+}
+
+object Commons {
+    const val appName = "CleanArchDemo"
+    const val dev = "dev"
+    const val devPrefix = ".dev"
+    const val devName = "CleanArchDemo-DEV"
+    const val prod = "prod"
+    const val prodPrefix = ".prod"
+    const val prodName = "CleanArchDemo"
+}
+
+object Url {
+    const val fabric = "https://maven.fabric.io/public"
+    const val sonatype = "https://oss.sonatype.org/content/repositories/snapshots"
+    const val jitpack = "https://jitpack.io"
 }

@@ -1,33 +1,8 @@
-import Dependencies.converterGson
-import Dependencies.converterMoshi
-import Dependencies.converterScalars
-import Dependencies.dagger
-import Dependencies.daggerAndroid
-import Dependencies.daggerAndroidProcessor
-import Dependencies.daggerAndroidSupport
-import Dependencies.daggerCompiler
-import Dependencies.kotlinStdlibJdk8
-import Dependencies.loggingInterceptor
-import Dependencies.mockWebserver
-import Dependencies.retrofit
-import Dependencies.retrofit2Rxjava2Adapter
-import Dependencies.roomCompiler
-import Dependencies.roomRuntime
-import Dependencies.roomRxjava2
-import Dependencies.rxJava
-import Dependencies.espressoCore
-import Dependencies.jUnit
-import Dependencies.mockitoCore
-import Dependencies.mockitoInline
-import Dependencies.mockitoKotlin
-import Dependencies.roomTesting
-import Dependencies.runner
-
 plugins {
-    id(Plugins.androidLibrary)
-    id(Plugins.kotlinKapt)
-    id(Plugins.kotlinAndroid)
-    id(Plugins.kotlinAndroidExtensions)
+    id(GradlePlugins.androidLib)
+    kotlin(GradlePlugins.kotlinAndroid)
+    kotlin(GradlePlugins.kotlinApt)
+    kotlin(GradlePlugins.kotlinExt)
 }
 
 android {
@@ -63,47 +38,53 @@ android {
             buildConfigField("String", "API_KEY_V3", "\"faf261888325f3e5598b206da781bfdc\"")
         }
     }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
-    implementation(project(Projects.domain))
-    implementation(kotlinStdlibJdk8)
+    implementation(project(Modules.domain))
+    implementation(Dependencies.kotlinStdlibJdk8)
 
     // Dagger
-    implementation(dagger)
-    implementation(daggerAndroid)
-    implementation(daggerAndroidSupport)
-    kapt(daggerCompiler)
-    kapt(daggerAndroidProcessor)
+    implementation(Dependencies.dagger)
+    implementation(Dependencies.daggerAndroid)
+    implementation(Dependencies.daggerAndroidSupport)
+    kapt(Dependencies.daggerCompiler)
+    kapt(Dependencies.daggerAndroidProcessor)
 
     // Rx
-    implementation(rxJava)
+    implementation(Dependencies.rxAndroid)
+    implementation(Dependencies.rxJava)
 
     // Retrofit
-    implementation(retrofit)
-    implementation(converterGson)
-    implementation(converterMoshi)
-    implementation(retrofit2Rxjava2Adapter)
-    implementation(loggingInterceptor)
-    implementation(converterScalars)
-    implementation(mockWebserver)
+    implementation(Dependencies.retrofit)
+    implementation(Dependencies.converterGson)
+    implementation(Dependencies.converterMoshi)
+    implementation(Dependencies.retrofit2Rxjava2Adapter)
+    implementation(Dependencies.loggingInterceptor)
+    implementation(Dependencies.converterScalars)
+    implementation(Dependencies.mockWebserver)
 
     // Room
-    implementation(roomRuntime)
-    kapt(roomCompiler)
-    implementation(roomRxjava2)
-    testImplementation(roomTesting)
+    implementation(Dependencies.roomRuntime)
+    kapt(Dependencies.roomCompiler)
+    implementation(Dependencies.roomRxjava2)
+    testImplementation(Dependencies.roomTesting)
 
     // Test
-    testImplementation(jUnit)
-    testImplementation(mockitoCore)
-    testImplementation(mockitoInline)
-    testImplementation(mockitoKotlin)
-    androidTestImplementation(runner) {
+    testImplementation(Dependencies.jUnit)
+    testImplementation(Dependencies.mockitoCore)
+    testImplementation(Dependencies.mockitoInline)
+    testImplementation(Dependencies.mockitoKotlin)
+    androidTestImplementation(Dependencies.runner) {
         exclude(group = "com.google.auto.value", module = "auto-value-annotations")
     }
-    androidTestImplementation(espressoCore) {
+    androidTestImplementation(Dependencies.espressoCore) {
         exclude(group = "com.google.auto.value", module = "auto-value-annotations")
     }
 }
