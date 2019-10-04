@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">shared</string>
+    <string name="no_more">No more items!</string>
+    <string name="try_again">Click to retry!</string>
+</resources>

@@ -42,6 +42,7 @@ object Modules {
     const val app = ":app"
     const val data = ":data"
     const val domain = ":domain"
+    const val shared = ":shared"
 }
 
 object Dependencies {
@@ -92,6 +93,8 @@ object Dependencies {
     const val coreTesting = "androidx.arch.core:core-testing:${Versions.lifecycle}"
     const val material = "com.google.android.material:material:${Versions.material}"
     const val legacySupportV4 = "androidx.legacy:legacy-support-v4:${Versions.legacySupport}"
+    const val legacySupportCoreUtils = "androidx.legacy:legacy-support-core-utils:${Versions.legacySupport}"
+    const val recyclerview = "androidx.recyclerview:recyclerview:${Versions.legacySupport}"
 
     // Junit
     const val jUnit = "junit:junit:${Versions.junit}"
