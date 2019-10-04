@@ -16,7 +16,7 @@ buildscript {
         // classpath(BuildPlugins.googleService)
         // classpath(BuildPlugins.fabric)
         // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
+        // in the individual module build.gradle.kts files
     }
 }
 
